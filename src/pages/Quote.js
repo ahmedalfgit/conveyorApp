@@ -37,7 +37,7 @@ class Quote extends Component {
           </Grid>
           <Grid container className="form-container">
             <Grid item md={6} sm={12} xs={12} className="form-col">
-                <form name="contact" method="POST" data-netlify="true" className="form" action="/submit.js">
+                <form name="contact" method="POST" data-netlify="true" className="form" action="./submit.js">
                     <div>
                       <input type="text" name="name" placeholder="Name" className="form-input name"/>
                     </div>
