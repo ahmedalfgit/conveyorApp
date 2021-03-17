@@ -7,6 +7,12 @@ import PhoneIcon from "../assests/phone-icon.jpg";
 import AddressIcon from "../assests/address-icon.jpg";
 import EmailIcon from "../assests/email-icon.jpg";
 
+
+const encode = (data) => {
+  return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+}
 class Quote extends Component {
 
   constructor(props) {
@@ -20,7 +26,7 @@ class Quote extends Component {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `message`
+      body: encode({ "form-name": "contact", ...this.state })
     })
       .then(() => alert("Success!"))
       .catch(error => alert(error));
