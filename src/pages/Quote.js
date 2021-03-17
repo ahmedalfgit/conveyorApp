@@ -8,7 +8,30 @@ import AddressIcon from "../assests/address-icon.jpg";
 import EmailIcon from "../assests/email-icon.jpg";
 
 class Quote extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { name: "", email: "", message: "" };
+  }
+
+   /* Here’s the juicy bit for posting the form submission */
+
+   handleSubmit = e => {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `encode({ "form-name": "contact", ...this.state })`
+    })
+      .then(() => alert("Success!"))
+      .catch(error => alert(error));
+
+    e.preventDefault();
+    };
+
+    handleChange = e => this.setState({ [e.target.name]: e.target.value });
+
   render() {
+    const { name, email, message } = this.state;
     return (
       <div>
         <Helmet>
@@ -37,21 +60,35 @@ class Quote extends Component {
           </Grid>
           <Grid container className="form-container">
             <Grid item md={6} sm={12} xs={12} className="form-col">
-                <form name="contact" method="POST" data-netlify="true" className="form" data-netlify-honeypot="bot-field">
-                <input type="hidden" name="form-name" value="contact" />
-                    <div>
-                      <input type="text" name="name" placeholder="Name" className="form-input name"/>
-                    </div>
-                    <div>
-                      <input type="email" name="email" placeholder="Email" className="form-input email"/>
-                    </div>
-                    <div>
-                      <textarea name="message" placeholder="Message" className="form-input message"></textarea>
-                    </div>
-                    <div>
-                      <button type="submit" className="btn">Send</button>
-                    </div>
+              <form onSubmit={this.handleSubmit} className="form">
+                <p>
+                    <input type="text" name="name" value={name} onChange={this.handleChange} placeholder="Name" className="form-input name" />
+                </p>
+                <p>
+                    <input type="email" name="email" value={email} onChange={this.handleChange} placeholder="Email" className="form-input email"/>
+                </p>
+                <p>
+                  <textarea name="message" value={message} onChange={this.handleChange} placeholder="Email" className="form-input email"/>
+                </p>
+                <p>
+                  <button type="submit" className="btn">Send</button>
+                </p>
               </form>
+                {/* <form name="contact" method="POST" data-netlify="true" className="form" data-netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="contact" />
+                    <p>
+                      <input type="text" name="name" placeholder="Name" className="form-input name"/>
+                    </p>
+                    <p>
+                      <input type="email" name="email" placeholder="Email" className="form-input email"/>
+                    </p>
+                    <p>
+                      <textarea name="message" placeholder="Message" className="form-input message"></textarea>
+                    </p>
+                    <p>
+                      <button type="submit" className="btn">Send</button>
+                    </p>
+              </form> */}
             </Grid>
           </Grid>
         </div>
