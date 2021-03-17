@@ -35,7 +35,24 @@ class Quote extends Component {
               </ul>
             </Grid>
           </Grid>
-          
+          <Grid container className="form-container">
+            <Grid item md={6} sm={12} xs={12} className="form-col">
+                <form name="contact" method="POST" data-netlify="true" className="form">
+                    <div>
+                      <input type="text" name="name" placeholder="Name" className="form-input name"/>
+                    </div>
+                    <div>
+                      <input type="email" name="email" placeholder="Email" className="form-input email"/>
+                    </div>
+                    <div>
+                      <textarea name="message" placeholder="Message" className="form-input message"></textarea>
+                    </div>
+                    <div>
+                      <button type="submit" className="btn">Send</button>
+                    </div>
+              </form>
+            </Grid>
+          </Grid>
         </div>
       </div>
     );
