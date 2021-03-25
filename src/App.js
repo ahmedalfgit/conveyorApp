@@ -12,7 +12,6 @@ import Biosolids from './pages/Biosolids';
 import Quote from './pages/Quote';
 import Contact from './pages/Contact';
 import COMade from './pages/COMade';
-import Submit from './pages/submit';
 
 export default function App() {
   return (
@@ -32,7 +31,6 @@ export default function App() {
           render={(props) => <Biosolids {...props} />}
         />
         <Route exact path="/quote" render={(props) => <Quote {...props} />} />
-        <Route exact path="/submit" render={(props) => <Submit {...props} />} />
         <Route
           exact
           path="/contact"
